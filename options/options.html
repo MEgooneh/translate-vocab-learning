@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <h2>TranslateVocab Settings</h2>
+
+    <div class="field">
+      <label>Theme</label>
+      <div class="theme-toggle">
+        <button class="theme-btn active" data-theme="dark">Dark</button>
+        <button class="theme-btn" data-theme="light">Light</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Target Language</label>
+      <p class="hint">Language to translate selected text into</p>
+      <select id="targetLangSelect" class="model-dropdown"></select>
+    </div>
+
+    <div class="field">
+      <label>Translation Engine</label>
+      <p class="hint">Choose which service to use for translations</p>
+      <div class="engine-toggle">
+        <button class="engine-btn active" data-engine="google">Google Translate</button>
+        <button class="engine-btn" data-engine="grok">AI Model</button>
+      </div>
+    </div>
+
+    <div id="aiSettings" class="ai-settings" hidden>
+      <!-- Profile selector -->
+      <div class="field">
+        <label>AI Profile</label>
+        <div class="profile-bar">
+          <select id="profileSelect" class="profile-dropdown"></select>
+          <button id="addProfile" class="btn-icon" title="New profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button id="renameProfile" class="btn-icon" title="Rename profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button id="deleteProfile" class="btn-icon btn-icon-danger" title="Delete profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>AI Provider</label>
+        <div class="provider-toggle">
+          <button class="provider-btn active" data-provider="openrouter">OpenRouter</button>
+          <button class="provider-btn" data-provider="openai">OpenAI</button>
+          <button class="provider-btn" data-provider="compatible">API Compatible</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="apiKey">API Key</label>
+        <p class="hint" id="apiKeyHint">Get a key at <a href="https://openrouter.ai/keys" target="_blank">openrouter.ai/keys</a></p>
+        <div class="input-group">
+          <input type="password" id="apiKey" placeholder="sk-or-...">
+          <button id="toggleShow" title="Show/hide key" class="btn-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="baseUrlField" class="field" hidden>
+        <label for="baseUrl">Base URL</label>
+        <p class="hint">The OpenAI-compatible API endpoint</p>
+        <input type="text" id="baseUrl" placeholder="https://api.example.com/v1">
+      </div>
+
+      <div class="field">
+        <label>Model</label>
+        <div id="modelSelectWrapper">
+          <div class="model-select-row">
+            <select id="modelSelect" class="model-dropdown">
+              <option value="x-ai/grok-4.1-fast">Grok 4.1 Fast</option>
+            </select>
+            <button id="refreshModels" class="btn-icon" title="Refresh models">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+            </button>
+          </div>
+          <p class="hint model-hint" id="modelPriceHint"></p>
+        </div>
+        <div id="modelInputWrapper" class="field" hidden>
+          <input type="text" id="modelInput" placeholder="e.g. gpt-4o, llama-3-70b">
+          <p class="hint">Enter the model identifier</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="save" class="btn-primary">Save</button>
+      <button id="test" class="btn-secondary">Test Connection</button>
+    </div>
+
+    <div id="status" class="status" hidden></div>
+  </div>
+  <script src="../lib/storage.js"></script>
+  <script src="../lib/languages.js"></script>
+  <script src="../lib/theme.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
