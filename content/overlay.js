@@ -80,7 +80,9 @@
     toolbar.id = 'tv-sel-toolbar';
     if (isDark) toolbar.classList.add('tv-dark');
 
-    const top = rect.top + window.scrollY - 40;
+    const abovePos = rect.top + window.scrollY - 40;
+    const belowPos = rect.bottom + window.scrollY + 8;
+    const top = abovePos >= window.scrollY ? abovePos : belowPos;
     const left = Math.max(8, Math.min(
       rect.left + window.scrollX + (rect.width / 2) - 80,
       window.innerWidth - 170
