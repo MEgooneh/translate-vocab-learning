@@ -6,9 +6,7 @@ const toggleBtn = document.getElementById('toggleShow');
 const saveBtn = document.getElementById('save');
 const testBtn = document.getElementById('test');
 const statusEl = document.getElementById('status');
-const engineBtns = document.querySelectorAll('.engine-btn');
 const providerBtns = document.querySelectorAll('.provider-btn');
-const aiSettings = document.getElementById('aiSettings');
 const baseUrlField = document.getElementById('baseUrlField');
 const modelSelectWrapper = document.getElementById('modelSelectWrapper');
 const modelInputWrapper = document.getElementById('modelInputWrapper');
@@ -48,14 +46,6 @@ let currentProfileId = null;
   await Storage.migrateToProfiles();
   const profiles = await Storage.getProfiles();
   const activeProfile = await Storage.getActiveProfile();
-
-  // Load engine setting
-  const { engine } = await chrome.storage.sync.get('engine');
-  const selectedEngine = engine || 'google';
-  engineBtns.forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.engine === selectedEngine);
-  });
-  aiSettings.hidden = selectedEngine === 'google';
 
   // Populate profile dropdown
   populateProfileDropdown(profiles, activeProfile);
@@ -187,15 +177,6 @@ themeBtns.forEach(btn => {
 targetLangSelect.addEventListener('change', async () => {
   await Storage.setTargetLang(targetLangSelect.value);
   showStatus(`Target language set to ${getLangName(targetLangSelect.value)}`, 'success');
-});
-
-// Engine toggle
-engineBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    engineBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    aiSettings.hidden = btn.dataset.engine === 'google';
-  });
 });
 
 // Provider toggle
@@ -342,24 +323,10 @@ toggleBtn.addEventListener('click', () => {
 
 saveBtn.addEventListener('click', async () => {
   const key = apiKeyInput.value.trim();
-  const engine = document.querySelector('.engine-btn.active').dataset.engine;
-
-  if (engine === 'grok' && !key) {
-    showStatus('API key is required when using AI engine.', 'error');
-    return;
-  }
 
   const model = currentProvider === 'compatible'
     ? modelInput.value.trim()
     : modelSelect.value;
-
-  if (engine === 'grok' && !model) {
-    showStatus('Please select or enter a model.', 'error');
-    return;
-  }
-
-  // Save engine globally
-  await chrome.storage.sync.set({ engine });
 
   // Save profile
   const profiles = await Storage.getProfiles();

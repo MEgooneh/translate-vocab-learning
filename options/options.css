@@ -1,42 +1,42 @@
-html, body {
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   margin: 0;
   padding: 0;
   background: #fafafa;
   color: #333;
   width: 440px;
-  height: 560px;
-  min-width: 440px;
-  min-height: 560px;
-  max-width: 440px;
-  max-height: 560px;
-  overflow: hidden;
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-  padding: 20px 24px;
+  height: 100vh;
   overflow-y: auto;
-  box-sizing: border-box;
   scrollbar-width: thin;
   scrollbar-color: #d1d5db transparent;
 }
 
-.container::-webkit-scrollbar {
+.container {
+  width: 100%;
+  padding: 20px 24px 32px;
+  box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
   width: 5px;
 }
 
-.container::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.container::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
   background: #d1d5db;
   border-radius: 10px;
 }
 
-.container::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover {
   background: #9ca3af;
 }
 
@@ -73,44 +73,6 @@ label {
 
 .hint a:hover {
   text-decoration: underline;
-}
-
-/* Engine toggle */
-.engine-toggle {
-  display: flex;
-  gap: 0;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.engine-btn {
-  flex: 1;
-  padding: 9px 12px;
-  border: none;
-  background: #fff;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  color: #6b7280;
-  transition: all 0.2s;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.engine-btn + .engine-btn {
-  border-left: 1px solid #e5e7eb;
-}
-
-.engine-btn.active {
-  background: linear-gradient(135deg, #1a73e8, #1557b0);
-  color: white;
-}
-
-.engine-btn:hover:not(.active) {
-  background: #f0f4ff;
-  color: #1a73e8;
 }
 
 /* Provider toggle */
@@ -208,6 +170,13 @@ label {
 
 .ai-settings .field:last-child {
   margin-bottom: 0;
+}
+
+.section-header {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 4px;
 }
 
 /* Inputs */
@@ -412,24 +381,26 @@ input::placeholder {
 }
 
 /* ===== Dark Mode ===== */
-[data-theme="dark"] {
+[data-theme="dark"],
+[data-theme="dark"] body {
   background: #0d1117;
   color: #e6edf3;
 }
 
-[data-theme="dark"] .container {
+[data-theme="dark"] body {
   scrollbar-color: #484f58 transparent;
 }
 
-[data-theme="dark"] .container::-webkit-scrollbar-thumb {
+[data-theme="dark"] body::-webkit-scrollbar-thumb {
   background: #484f58;
 }
 
-[data-theme="dark"] .container::-webkit-scrollbar-thumb:hover {
+[data-theme="dark"] body::-webkit-scrollbar-thumb:hover {
   background: #6e7681;
 }
 
-[data-theme="dark"] h2 {
+[data-theme="dark"] h2,
+[data-theme="dark"] .section-header {
   color: #f0f6fc;
 }
 
@@ -446,28 +417,22 @@ input::placeholder {
 }
 
 /* Toggle groups */
-[data-theme="dark"] .engine-toggle,
 [data-theme="dark"] .provider-toggle,
 [data-theme="dark"] .theme-toggle {
   border-color: #30363d;
 }
 
-[data-theme="dark"] .engine-btn,
 [data-theme="dark"] .provider-btn,
 [data-theme="dark"] .theme-btn {
   background: #161b22;
   color: #8b949e;
 }
 
-[data-theme="dark"] .engine-btn + .engine-btn,
 [data-theme="dark"] .provider-btn + .provider-btn,
 [data-theme="dark"] .theme-btn + .theme-btn {
   border-left-color: #30363d;
 }
 
-[data-theme="dark"] .engine-btn.active {
-  background: linear-gradient(135deg, #1f6feb, #1a5dc8);
-}
 
 [data-theme="dark"] .provider-btn.active {
   background: linear-gradient(135deg, #8b5cf6, #7c3aed);
@@ -478,7 +443,6 @@ input::placeholder {
   color: #0d1117;
 }
 
-[data-theme="dark"] .engine-btn:hover:not(.active),
 [data-theme="dark"] .theme-btn:hover:not(.active) {
   background: #21262d;
   color: #c9d1d9;
@@ -597,7 +561,6 @@ input::placeholder {
 }
 
 /* Dark mode: focus-visible */
-[data-theme="dark"] .engine-btn:focus-visible,
 [data-theme="dark"] .provider-btn:focus-visible,
 [data-theme="dark"] .theme-btn:focus-visible,
 [data-theme="dark"] .btn-primary:focus-visible,
@@ -610,7 +573,6 @@ input::placeholder {
 }
 
 /* Light mode: focus-visible */
-.engine-btn:focus-visible,
 .provider-btn:focus-visible,
 .theme-btn:focus-visible,
 .btn-primary:focus-visible,

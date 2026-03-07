@@ -7,8 +7,8 @@ A Chrome extension for translating selected text and building vocabulary through
 - **One-click translation** — Select any text on a webpage to translate it instantly
 - **20+ languages** — Persian, Arabic, Spanish, French, German, Japanese, Chinese, and more
 - **Spaced repetition** — Quiz and flashcard system based on SM-2/Leitner principles
-- **AI chat** — Ask AI to explain words, grammar, or context (OpenRouter, OpenAI, or custom endpoint)
-- **Google Translate + AI fallback** — Uses Google Translate by default with optional AI-powered translation
+- **AI chat** — Ask AI to explain words, grammar, or context (OpenRouter, OpenAI, or compatible endpoint)
+- **Google Translate** — Fast, reliable translation powered by Google Translate
 - **Dark mode** — Full dark theme support
 
 ## Install
