@@ -556,9 +556,9 @@ function renderFlashcard() {
         <button class="btn-know" id="fcCorrect">Got It</button>
       </div>
       <div class="flashcard-nav" style="margin-top:12px">
-        <button id="fcPrev" ${current === 0 ? 'disabled' : ''}>← Prev</button>
+        <button id="fcPrev" ${current === 0 ? 'disabled' : ''}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Prev</button>
         <button id="fcSkip">Skip</button>
-        <button id="fcNext" ${current === cards.length - 1 ? 'disabled' : ''}>Next →</button>
+        <button id="fcNext" ${current === cards.length - 1 ? 'disabled' : ''}>Next <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
       </div>
     </div>
   `;

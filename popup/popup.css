@@ -654,6 +654,9 @@ html, body {
   background: #fff;
   cursor: pointer;
   font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .flashcard-nav button:hover {
@@ -1025,7 +1028,8 @@ html, body {
 }
 
 /* ===== Dark Mode ===== */
-[data-theme="dark"] {
+[data-theme="dark"],
+[data-theme="dark"] body {
   background: #0d1117;
   color: #e6edf3;
 }
